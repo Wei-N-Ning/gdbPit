@@ -4,6 +4,13 @@
 # https://lldb.llvm.org/lldb-gdb.html
 # transit from GDB to LLDB
 
+# this is also helpful:
+# https://stackoverflow.com/questions/26812047/scripting-lldb-to-obtain-a-stack-trace-after-a-crash
+
+# also read:
+# https://gist.github.com/rongierlach/97362cfc7ebe2194fb7315d0375c5b5a
+
+
 CC=${CC-clang}
 CXX=${CXX-clang++}
 DBG=${DBG-lldb}
@@ -46,6 +53,15 @@ runSutThenDumpRegisters() {
 -o "breakpoint set --name ido" \
 -o "run" \
 -o "register read" ${sutbin}
+
+    # same commands but using a command file
+    # this is equivalent to gdb -batch -command=/some/file
+    echo "
+breakpoint set --name ido
+run
+register read
+" >${TEMPDIR}/commands.lldb
+    ${DBG} --batch -s ${TEMPDIR}/commands.lldb ${sutbin}
 }
 
 # load binary
