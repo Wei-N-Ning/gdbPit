@@ -52,7 +52,7 @@ EOF
 # (lldb) br l
 debugSUT() {
     cat >${TEMPDIR}/commands.lldb << "EOF"
-br s -r there*
+br s -r there\w*$
 br l
 EOF
     ${DBG} --batch -s ${TEMPDIR}/commands.lldb ${sutbin}
