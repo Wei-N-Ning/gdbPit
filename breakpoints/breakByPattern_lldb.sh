@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# source
+# https://lldb.llvm.org/lldb-gdb.html
+
 set -e
 
 TEMPDIR=/tmp/sut
@@ -13,9 +16,9 @@ setUp() {
     mkdir -p ${TEMPDIR}
 }
 
-CC=${CC-gcc}
-CXX=${CXX-g++}
-DBG=${DBG-gdb}
+CC=${CC-clang}
+CXX=${CXX-clang++}
+DBG=${DBG-lldb}
 
 sutbin=
 buildSUT() {
@@ -40,12 +43,19 @@ EOF
     sutbin=${TEMPDIR}/_
 }
 
+# NOTE
+
+# (lldb) breakpoint set --func-regex regular-expression
+# (lldb) br s -r regular-expression
+
+# (lldb) breakpoint list
+# (lldb) br l
 debugSUT() {
     cat >${TEMPDIR}/commands.lldb << "EOF"
-rbreak there*
-i break
+br s -r there*
+br l
 EOF
-    ${DBG} --batch -command=${TEMPDIR}/commands.lldb ${sutbin}
+    ${DBG} --batch -s ${TEMPDIR}/commands.lldb ${sutbin}
 }
 
 setUp
