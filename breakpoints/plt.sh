@@ -5,5 +5,9 @@
 # some fake dummies show up such as printf()@plt
 # this post explains it:
 # https://stackoverflow.com/questions/5469274/what-does-plt-mean-here
+# UPDATE {
+# see linuxBinaryAnalysis/tracing for a good indepth explanation with
+# working examples
 
+# }
 
