@@ -4,8 +4,8 @@
 # https://lldb.llvm.org/lldb-gdb.html
 # transit from GDB to LLDB
 
-CC=${CC-cc}
-CXX=${CXX-c++}
+CC=${CC-clang}
+CXX=${CXX-clang++}
 DBG=${DBG-lldb}
 
 set -e
@@ -57,9 +57,13 @@ runSutThenDumpRegisters() {
 #
 # This one finds non-debug symbols:
 # (lldb) image lookup -r -s <FUNC_REGEX>
+
+# UPDATE:
+# image lookup -r -n on mac os shows too much information
+# I have to use a stricter regex to filter the unwanted lines
 listSutDebugSymbols() {
-    ${DBG} -batch \
--o "image lookup -r -n .*" ${sutbin}
+    ${DBG} --batch \
+-o "image lookup -r -n ^ido$" ${sutbin}
 }
 
 setUp
