@@ -66,6 +66,7 @@ EOF
 # command 1
 
 # > Setting Breakpoint with Condition
+# //////// NOTE: this does not work on MAC ////////
 # experiment:
 # sut program won't be stopped if the condition is set to (impossible
 # to meet)
@@ -77,7 +78,7 @@ EOF
 # (lldb) fr v
 debugSUT() {
     cat > ${TEMPDIR}/commands.txt << "EOF"
-br s -f conditional.cc -l 26 --condition 'spVec->size() > 3'
+br s -f conditional.cc -l 26
 br command add 1.1
 frame variable
 DONE
