@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+# source:
+# https://lldb.llvm.org/lldb-gdb.html
+# https://lldb.llvm.org/tutorial.html
+
+# note how to set breakpoint on C++ method
+
 set -e
 
 TEMPDIR=/tmp/sut
@@ -13,9 +19,9 @@ setUp() {
     mkdir -p ${TEMPDIR}
 }
 
-CC=${CC-gcc}
-CXX=${CXX-g++}
-DBG=${DBG-gdb}
+CC=${CC-clang}
+CXX=${CXX-clang++}
+DBG=${DBG-lldb}
 
 sutbin=
 buildSUT() {
@@ -53,17 +59,32 @@ EOF
     sutbin=${TEMPDIR}/_
 }
 
+# > Setting Breakpoints
+# (lldb) breakpoint set --file test.c --line 12
+# (lldb) br s -f test.c -l 12
+# (lldb) b test.c:12
+# command 1
+
+# > Setting Breakpoint with Condition
+# experiment:
+# sut program won't be stopped if the condition is set to (impossible
+# to meet)
+# --condition 'spVec->size() > 3999'
+
+# > Inspect frame variables
+# gdb's info args/ info locals is implemented as:
+# (lldb) frame variable
+# (lldb) fr v
 debugSUT() {
     cat > ${TEMPDIR}/commands.txt << "EOF"
-break conditional.cc:26 if spVec->size() > 3
-command 1
-echo thereisacow\n
-i frame
-end
+br s -f conditional.cc -l 26 --condition 'spVec->size() > 3'
+br command add 1.1
+frame variable
+DONE
 r
-cont
+c
 EOF
-    ${DBG} -batch -command=${TEMPDIR}/commands.txt ${sutbin}
+    ${DBG} --batch -s ${TEMPDIR}/commands.txt ${sutbin}
 }
 
 setUp
