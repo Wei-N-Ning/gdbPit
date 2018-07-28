@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
-function compile() {
+CC=${CC-gcc}
+CXX=${CXX-g++}
+DBG=${DBG-gdb}
+
+compile() {
     echo "
 void ido() {
     ;
@@ -11,19 +15,25 @@ int main() {
     return 0;
 }
 " > /tmp/ido.c
-    gcc -g -o /tmp/ido /tmp/ido.c
+    ${CC} -g -o /tmp/ido /tmp/ido.c
 }
 
-function runSutThenDumpRegisters() {
-    gdb -batch \
+# load binary
+# set a breakpoint at subroutine named ido()
+# run the binary
+# (once stopped) inspect registers
+runSutThenDumpRegisters() {
+    ${DBG} -batch \
 -ex "file /tmp/ido" \
 -ex "break ido" \
 -ex "run" \
 -ex "i r"
 }
 
-function listSutDebugSymbols() {
-    gdb -batch \
+# load binary
+# inspect all the subroutine symbols
+listSutDebugSymbols() {
+    ${DBG} -batch \
 -ex "file /tmp/ido" \
 -ex "i func"
 }
