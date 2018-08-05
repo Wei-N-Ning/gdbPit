@@ -7,7 +7,7 @@ setUp() {
 }
 
 buildProgram() {
-    cat > /tmp/sut/_.c <<EOF
+    cat > /tmp/sut/_.c << "EOF"
 #include <stdlib.h>
 void to_stop(int count) {
     int sum = 0;
