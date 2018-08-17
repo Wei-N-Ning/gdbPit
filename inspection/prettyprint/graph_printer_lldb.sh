@@ -1,5 +1,15 @@
 #!/usr/bin/env bash
 
+# source:
+# https://lldb.llvm.org/python-reference.html
+# good read: https://lldb.llvm.org/scripting.html
+# https://lldb.llvm.org/python_reference/index.html
+
+# CHECK THIS OUT!!!
+# https://github.com/llvm-mirror/lldb/tree/master/examples/python
+# https://github.com/tgebarowski/lldb-scripts
+
+
 CC=${CC-gcc}
 CXX=${CXX-g++}
 DBG=${DBG-lldb}
