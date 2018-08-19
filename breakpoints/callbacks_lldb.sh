@@ -5,6 +5,8 @@
 # https://lldb.llvm.org/tutorial.html
 
 # note how to set breakpoint on C++ method
+# note for deeper object graph inspection see inspection/prettyprint
+# lldb's python api makes it easier than with gdb
 
 set -e
 

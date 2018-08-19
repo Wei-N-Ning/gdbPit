@@ -10,6 +10,12 @@
 # also read:
 # https://gist.github.com/rongierlach/97362cfc7ebe2194fb7315d0375c5b5a
 
+# this look intriguing:
+# https://github.com/llvm-mirror/lldb/blob/master/examples/python/scripted_step.py
+# --> https://github.com/llvm-mirror/lldb/blob/master/include/lldb/Target/ThreadPlan.h
+# https://github.com/llvm-mirror/lldb/blob/master/examples/python/sources.py
+# https://github.com/llvm-mirror/lldb/blob/master/examples/python/step_and_print.py
+
 
 CC=${CC-clang}
 CXX=${CXX-clang++}

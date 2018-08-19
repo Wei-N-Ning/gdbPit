@@ -104,7 +104,7 @@ void processGraph(core::graph::Graph& graph) {
 }
 
 class Graph {
-    std::vector<void *> m_data;
+    std::vector<void *> m_nodes;
 };
 
 int main() {
