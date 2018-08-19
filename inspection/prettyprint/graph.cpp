@@ -110,6 +110,7 @@ class Graph {
 int main() {
     core::graph::Graph g(3, 0x13);
     Graph phony;
+    phony = Graph();
     processGraph(g);
     return 0;
 }

@@ -4,6 +4,20 @@
 # http://tromey.com/blog/?p=524
 # https://www.rethinkdb.com/blog/make-debugging-easier-with-custom-pretty-printers/
 
+# 1) the source code shows a mock-up version of a graph-based computing
+#    network that has a flaw causing segfault (documented in source);
+#    the developer wants to debug this flaw by stopping the program at
+#    each call to the compute() method of the Node object; he then
+#    may take advantage of the pretty-print feature implemented in
+#    python to inspect the data and track down the offending code;
+# 2) this script builds the program and automates the loading and running
+#    of SUT in gdb.
+# 3) note GDB must "see" the python script therefore PYTHONPATH is
+#    modify to enable that; in an environment with a package/shell management
+#    system this can be configured in the package or payload
+# 4) the GDB command can also be written in a script file that is set up
+#    automatically by the environment management system.
+
 CC=${CC-gcc}
 CXX=${CXX-g++}
 DBG=${DBG-gdb}
@@ -45,7 +59,7 @@ start
 n 3
 print g
 print phony
-c
+quit
 EOF
     ${DBG} -batch -command=${TEMPDIR}/commands.gdb ${sutbin}
 }

@@ -15,7 +15,25 @@ class CoreGraphPrinter(object):
         return 'core-graph, nodes: {}'.format(finish_addr - start_addr)
 
 
+class NodePrinter(object):
+
+    def __init__(self, val):
+        self.val = val
+
+    def to_string(self):
+        return 'pp called'
+
+
 def init():
-    pp = gdb.printing.RegexpCollectionPrettyPrinter('')
+    # the first argument to ctor is the name of
+    # RegexpCollectionPrettyPrinter object;
+    pp = gdb.printing.RegexpCollectionPrettyPrinter('test-project')
+
+    # the first argument to ctor is the name of the pretty-printer;
+    # the second argument is a regex pattern;
     pp.add_printer('core-graph', 'core::graph::Graph', CoreGraphPrinter)
+    pp.add_printer('core-node', 'core::Node', NodePrinter)
+
+    # the first argument is the scope - I can use an object here;
+    # using None means global scope
     gdb.printing.register_pretty_printer(None, pp)
