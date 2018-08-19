@@ -40,19 +40,37 @@ moduleName=graph_printer_lldb
 export PYTHONPATH=${modulePath}:${PYTHONPATH}
 
 # lldb -- /tmp/sut/_
+
 # proc la -s
+# //// OR ////
+# b main
+# pr la
+# (this is equivalent to GDB's start, because I won't run main twice)
+
 # script import graph_printer_lldb
 # br s -n processGraph
 # c
 # script g = lldb.frame.FindVariable("g")
 # script graph_printer_lldb.print_graph(g)
 debugSUT() {
-    :
+    cat >${TEMPDIR}/commands.lldb <<"EOF"
+script import graph_printer_lldb
+b main
+pr la
+script g = lldb.frame.FindVariable("g")
+script graph_printer_lldb.print_graph(g)
+script phony = lldb.frame.FindVariable("phony")
+script graph_printer_lldb.print_graph(phony)
+kill
+quit
+EOF
+    ${DBG} \
+--batch \
+-s ${TEMPDIR}/commands.lldb \
+-- ${sutbin}
 }
 
 setUp
 buildSUT "-g"
 debugSUT
-#tearDown
-
-
+tearDown

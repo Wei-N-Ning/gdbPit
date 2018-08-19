@@ -1,3 +1,17 @@
+"""
+
+related articles:
+https://stackoverflow.com/questions/7060099/how-to-call-constructor-in-gdb-for-pretty-printers
+(see the second answer)
+https://stackoverflow.com/questions/43520104/gdb-pretty-print-class-containing-stl-container
+(see how it uses the std::set printer in python)
+
+this can be helpeful
+https://stackoverflow.com/questions/8578320/gdb-pretty-printing-with-direct-function-calls
+
+"""
+
+
 import gdb.printing
 import gdb
 
