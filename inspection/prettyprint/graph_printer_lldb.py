@@ -313,11 +313,12 @@ def print_params():
     ref = this.deref
 
     # get one data member
-    # param = ref.GetChildMemberWithName('m_params')
-    # print(param)
+    print('++++ one data member ++++')
+    param = ref.GetChildMemberWithName('m_params')
+    print(param.GetNumChildren())
 
     # get all data members
-    print('//// data members ////')
+    print('//// all data members ////')
     for i in range(ref.GetNumChildren()):
         sbvalue = ref.GetChildAtIndex(i)
         print(sbvalue)

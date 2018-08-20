@@ -23,6 +23,10 @@
 #     https://github.com/llvm-mirror/lldb/blob/master/examples/python/sbvalue.py
 # https://github.com/tgebarowski/lldb-scripts
 
+# how to inspect raw data in memory
+# https://stackoverflow.com/questions/41307667/reading-n-bytes-from-a-memory-address-using-lldbs-python-api
+# script lldb.process.ReadMemory(0x0, 0x0, error_ref)
+
 
 CC=${CC-gcc}
 CXX=${CXX-g++}
