@@ -7,6 +7,8 @@
 
 # note 2: use set confirm off to turn off prompt if I want to automatically delete all the existing breakpoints
 
+# note 3: I can put # comment lines in the breakpoint text file; this can be useful when I want to disable/enable some callbacks
+
 function setUp() {
     sutSrc="$( dirname ${0} )/$( basename ${0%.sh} ).cpp"
     sutBin="/tmp/$( basename ${0%.sh} ).o"
