@@ -2,7 +2,10 @@
 
 # update
 # this feature can be a time saver when debugging a complex issue;
+
 # note: use source command to load the text file back (not load)
+
+# note 2: use set confirm off to turn off prompt if I want to automatically delete all the existing breakpoints
 
 function setUp() {
     sutSrc="$( dirname ${0} )/$( basename ${0%.sh} ).cpp"
@@ -23,7 +26,12 @@ function run() {
     cat /tmp/saveBreakpoints.bp
     
     gdb ${sutBin} -batch \
--ex "source /tmp/saveBreakpoints.bp"
+-ex "source /tmp/saveBreakpoints.bp" \
+-ex 'i br' \
+-ex 'set confirm off' \
+-ex 'd br' \
+-ex 'source /tmp/saveBreakpoints.bp' \
+-ex 'i br'
 
 }
 
