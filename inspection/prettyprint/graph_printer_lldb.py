@@ -311,5 +311,13 @@ def print_params():
     """
     this = lldb.frame.FindVariable("this")
     ref = this.deref
-    param = ref.GetChildMemberWithName('m_params')
-    print(param)
+
+    # get one data member
+    # param = ref.GetChildMemberWithName('m_params')
+    # print(param)
+
+    # get all data members
+    print('//// data members ////')
+    for i in range(ref.GetNumChildren()):
+        sbvalue = ref.GetChildAtIndex(i)
+        print(sbvalue)

@@ -17,6 +17,9 @@ public:
     }
 private:
     int m_value = 0;
+
+    // create some noises here
+    int m_creationTime = 101;
 };
 
 // create a shady side effect
@@ -64,6 +67,11 @@ public:
     }
 private:
     vector<Parameter *> m_params;
+
+    // create some noises here
+    int m_numVariants = 10;
+    int m_numDimensions = 3;
+    char m_nameCStr[32];
 };
 
 namespace graph {
@@ -93,6 +101,9 @@ public:
 private:
     vector<Node *> m_nodes;
     int m_argument;
+
+    // create some noises here
+    char m_nameCStr[32];
 };
 
 } // namespace graph
