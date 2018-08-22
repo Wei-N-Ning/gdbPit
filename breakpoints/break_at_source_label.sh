@@ -2,7 +2,7 @@
 
 # source:
 
-# ////// DOES NOT SEEM TO WORK IN C++ CODE //////
+# ////// BEWARE OF OPTIMIZED C++ CODE //////
 # https://gcc.gnu.org/onlinedocs/gcc/Local-Labels.html#Local-Labels
 
 # ///////////////////
