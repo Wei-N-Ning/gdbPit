@@ -2,6 +2,9 @@
 
 # source:
 
+# ////// DOES NOT SEEM TO WORK IN C++ CODE //////
+# https://gcc.gnu.org/onlinedocs/gcc/Local-Labels.html#Local-Labels
+
 # ///////////////////
 # NOTE: this require the target to carry debug symbols (-g)
 # ///////////////////
