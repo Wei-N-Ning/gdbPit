@@ -8,6 +8,14 @@
 # breakpoint is hit. As such, they still slow the target down in relation to to
 # how often the target location is hit, not how often the condition is met.
 
+# UPDATE
+# //////// to compare two strings ////////
+# > cast the SUT to c-string (std::string::c_str())
+# > call strcmp() and compare the result to 0
+# see:
+# https://stackoverflow.com/questions/4183871/how-do-i-set-a-conditional-breakpoint-in-gdb-when-char-x-points-to-a-string-wh
+#
+
 function setUp() {
     sutSrc="$( dirname ${0} )/$( basename ${0%.sh} ).cpp"
     sutBin="/tmp/$( basename ${0%.sh} ).o"
