@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+# note:
+# a more common form looks like:
+# rb some::dude::Param::method(some::man::Arg&) const$
+# this excludes the trampling entry in the procedure link table (plt)
+
 set -e
 
 TEMPDIR=/tmp/sut
